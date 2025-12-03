@@ -9,6 +9,7 @@
     "devstart": "concurrently \"npm run client\" \"npm run server\"",
     "dev": "node server.js",
     "build": "vite build",
+    "prod": "node server.js",
     "preview": "vite preview",
     "lint": "eslint ."
   },
