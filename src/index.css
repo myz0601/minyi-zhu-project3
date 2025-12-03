@@ -1,0 +1,9 @@
+:root { color-scheme: light; }
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
+html, body { margin: 0; padding: 0; }
+img { display: block; }

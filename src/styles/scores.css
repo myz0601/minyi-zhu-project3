@@ -1,0 +1,93 @@
+body.scores .bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body.scores {
+  padding-top: 80px;
+}
+
+/* white card */
+.scores-card {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.scores-card h1 {
+  text-align: center;
+  margin: 0 0 20px;
+  font-size: 2rem;
+  color: #7d698e;
+}
+
+/* table */
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.score-table thead {
+  background: #7d698e;
+  color: white;
+}
+
+.score-table th,
+.score-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.score-table tbody tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.score-table tbody tr:hover {
+  background: #e6dff1;
+}
+
+.scores-status {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.scores-status.scores-error {
+  color: #c0392b;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  body.scores {
+    padding-top: 60px;
+  }
+
+  .scores-card {
+    width: 85%;
+    max-width: 340px;
+    padding: 15px 15px 20px;
+    margin: 20px auto 0;
+  }
+
+  .scores-card h1 {
+    font-size: 1.5rem;
+    margin: 0 0 15px;
+  }
+
+  .score-table th,
+  .score-table td {
+    padding: 6px;
+    font-size: 0.85rem;
+  }
+}

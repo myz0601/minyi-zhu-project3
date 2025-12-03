@@ -1,0 +1,102 @@
+body.register .bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body.register {
+  padding-top: 80px;
+}
+
+/* white card */
+.register-card {
+  max-width: 400px;
+  margin: 40px auto 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.register-card h1 {
+  text-align: center;
+  margin: 0 0 20px; 
+  font-size: 1.8rem;
+  color: #7d698e;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form label {
+  margin: 10px 0 5px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.auth-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #7d698e;
+  box-shadow: 0 0 5px #d397b1;
+}
+
+.form-error {
+  margin-top: 10px;
+  color: #b00020;
+  background: #fde7eb;
+  border: 1px solid #f6b7c3;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.auth-form button {
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 1rem;
+  background: #7d698e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-form button:hover {
+  background: #d397b1;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  body.register {
+    padding-top: 60px;
+  }
+
+  .register-card {
+    width: 85%;
+    max-width: 320px;
+    padding: 15px 20px 20px;
+    margin: 20px auto 0;
+  }
+
+  .register-card h1 {
+    font-size: 1.5rem;
+    margin: 0 0 15px;
+  }
+
+  .auth-form label { font-size: 0.85rem; }
+  .auth-form input { padding: 8px; font-size: 0.9rem; }
+  .auth-form button { padding: 10px; font-size: 0.95rem; }
+}

@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+html, body { 
+  margin: 0; 
+  padding: 0; 
+}
+
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
+
+.container {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: #bed8e2;
+  padding-top: 60px;
+}
+
+body.home {
+  padding-top: 0;
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Home page hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.hero-inner {
+  width: 100%;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.hero-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero-buttons .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #7d698e;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.hero-buttons .btn:hover {
+  background-color: #d397b1;
+  transform: translateY(-3px);
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #7d698e;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: height 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar .logo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: auto;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 8px;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+}
+
+.menu a:hover {
+  background: #d397b1;
+  border-radius: 4px;
+}
+
+.menu a.active {
+  background: #91bcc1;
+  border-radius: 4px;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+/* Log In / Sign Up / user info */
+.nav-auth-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 8px;
+}
+
+/* Log In / Sign Up */
+.menu .nav-auth-btn {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.menu .nav-auth-btn:hover {
+  background-color: #d397b1;
+}
+
+.menu .nav-auth-btn.nav-auth-outline {
+  background-color: transparent;
+}
+
+.menu .nav-auth-btn.active {
+  background: transparent;
+  border-color: #91bcc1;
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font: inherit;
+  padding: 0;
+}
+
+.nav-profile-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.nav-profile-arrow {
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+
+.nav-profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+}
+
+.nav-logout-link {
+  background: transparent;
+  border: none;
+  color: white;
+  font: inherit;
+  margin: 0 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-logout-link:hover {
+  background: #d397b1;
+  border-radius: 4px;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px;
+  }
+
+  body.home {
+    padding-top: 0;
+  }
+
+  .navbar {
+    height: 60px;
+  }
+
+  .navbar:hover {
+    height: 60px;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #7c849e;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .menu a {
+    margin: 10px 0;
+    display: block;
+  }
+
+  .nav-auth-area {
+    flex-direction: column;
+    margin-top: 8px;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  #menu-toggle:checked + .menu-icon + .menu {
+    display: flex;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navbar:hover {
+    height: 80px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+}
+

@@ -1,0 +1,91 @@
+body.rules .bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body.rules {
+  padding-top: 80px;
+}
+
+.rules-card {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px 60px 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.rules-card h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #7d698e;
+  margin: 0 0 20px;
+}
+
+.rules-card h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #7d698e;
+  margin-left: 0;
+}
+
+.rules-card p {
+  margin-left: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+.rules-card ul,
+.rules-card ol {
+  margin: 0;
+  padding-inline-start: 1.25em;
+  line-height: 1.8;
+  list-style-position: outside;
+}
+
+.rules-card li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.rules-card a {
+  color: #7d698e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.rules-card a:hover {
+  text-decoration: underline;
+  color: #5a476b;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .rules-card {
+    margin: 20px;
+    padding: 15px 16px 20px;
+  }
+
+  .rules-card h1 {
+    font-size: 2rem;
+    margin: 0 0 15px;
+  }
+
+  .rules-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .rules-card ul,
+  .rules-card ol {
+    padding-inline-start: 1em;
+  }
+}
