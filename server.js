@@ -19,8 +19,8 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
-const MONGODB_URL =
-  process.env.MONGODB_URL || "mongodb://localhost:27017/sudoku";
+const MONGODB_URL = process.env.MONGODB_URI ||  "mongodb://localhost:27017/sudoku";
+
 
 mongoose.connect(MONGODB_URL);
 const db = mongoose.connection;
@@ -43,5 +43,5 @@ app.get(/.*/, (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });
