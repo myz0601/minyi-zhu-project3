@@ -32,39 +32,6 @@ function cloneBoard(g) {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "NEW_GAME": {
-      let mode = action.mode ?? state.mode;
-
-      const game = generateGame(mode);
-      const size = game.size;
-      const blockRows = game.blockRows;
-      const blockCols = game.blockCols;
-      const init_board = game.init_board;
-      const final_board = game.final_board;
-
-      const curr_board = init_board.map((r) => r.slice());
-      const bool_init = makeBoolean(init_board);
-      const conflicts = findConflicts(curr_board, size, blockRows, blockCols);
-
-      return {
-        ...state,
-        mode,
-        size,
-        blockRows,
-        blockCols,
-        init_board,
-        final_board,
-        curr_board,
-        bool_init,
-        conflicts,
-        status: "playing",
-        locked: false,
-        startedAt: Date.now(),
-        elapsedMs: 0,
-        hint: null,
-      };
-    }
-
     case "INIT_FROM_BACKEND": {
       const {
         mode,

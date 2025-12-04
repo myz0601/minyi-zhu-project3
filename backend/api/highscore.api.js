@@ -32,17 +32,36 @@ router.post(
       return res.status(400).json({ error: "Missing gameId" });
     }
 
-    const game = await SudokuGame.findByIdAndUpdate(
-      gameId,
-      { $inc: { completedCount: 1 }, $set: { isCompleted: true } },
-      { new: true }
-    ).lean();
+    const username = req.cookies.username;
 
+    const game = await SudokuGame.findById(gameId);
     if (!game) {
       return res.status(404).json({ error: "Game not found" });
     }
 
-    res.json({
+    if (!Array.isArray(game.completedBy)) {
+      game.completedBy = [];
+    }
+    if (typeof game.completedCount !== "number") {
+      game.completedCount = 0;
+    }
+
+    if (username) {
+      // logged-in user: add 1 only when not completed
+      if (!game.completedBy.includes(username)) {
+        game.completedBy.push(username);
+        game.completedCount += 1;
+      }
+    } else {
+      // Anonymous: add 1
+      game.completedCount += 1;
+    }
+
+    game.isCompleted = true;
+
+    await game.save();
+
+    return res.json({
       gameId: game._id.toString(),
       name: game.name,
       mode: game.mode,
@@ -50,6 +69,8 @@ router.post(
     });
   })
 );
+
+
 
 /**
  * GET /api/highscore/:gameId

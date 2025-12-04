@@ -1,9 +1,7 @@
 import "../styles/common.css";
 import "../styles/game.css";
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import { SudokuProvider, useSudoku } from "../sudoku/SudokuContext";
 import Board from "../sudoku/Board";
 import Controls from "../sudoku/Controls";
@@ -42,7 +40,6 @@ function GameInner({ gameMeta, gameId }) {
 
   useEffect(() => {
     if (wasCompleted) return;
-
     if (state.status !== "won") return;
     if (reportedWin) return; 
 
@@ -68,15 +65,11 @@ function GameInner({ gameMeta, gameId }) {
   return (
     <div className="game-wrapper">
       <h1 className="page-title">{title}</h1>
-
       <div className="game-layout">
         <Board />
       </div>
-
       <Controls />
-
       <WinBanner mode={gameMeta.mode} />
-
       {state.locked && (
         <div className="game-locked">
           <div className="game-locked-title">This game is completed.</div>
@@ -90,13 +83,12 @@ function GameInner({ gameMeta, gameId }) {
 }
 
 
-function convertGameFromApi(game) {
+function convertGameFromApi(game, isCompletedForUser) {
   const puzzle = game.puzzle || [];
   const solution = game.solution || [];
 
   const size = puzzle.length || 9;
   const mode = game.mode || "NORMAL";
-
 
   let blockRows, blockCols;
   if (mode === "EASY") {
@@ -121,7 +113,7 @@ function convertGameFromApi(game) {
     blockCols,
     init_board,
     final_board,
-    isCompleted: !!game.isCompleted,
+    isCompleted: !!isCompletedForUser,
   };
 }
 
@@ -132,8 +124,32 @@ export default function GamePage() {
   const [error, setError] = useState("");
   const [initialGame, setInitialGame] = useState(null);
   const [gameMeta, setGameMeta] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [userLoaded, setUserLoaded] = useState(false);
 
   useEffect(() => {
+    async function loadUser() {
+      try {
+        const res = await fetch("/api/user/isLoggedIn");
+        if (res.ok) {
+          const data = await res.json();
+          setCurrentUser(data.username);
+        } else {
+          setCurrentUser(null);
+        }
+      } catch (err) {
+        setCurrentUser(null);
+      } finally {
+        setUserLoaded(true);
+      }
+    }
+    loadUser();
+  }, []);
+
+
+    useEffect(() => {
+    if (!userLoaded) return;
+
     async function loadGame() {
       try {
         setLoading(true);
@@ -150,13 +166,21 @@ export default function GamePage() {
           throw new Error("Game not found");
         }
 
-        const wasCompleted = !!game.isCompleted;
+        const completedBy = game.completedBy || [];
 
-        setInitialGame(convertGameFromApi(game));
+        let wasCompletedForUser = false;
+
+        if (currentUser) {
+          wasCompletedForUser = completedBy.includes(currentUser);
+        } else {
+          wasCompletedForUser = false;
+        }
+
+        setInitialGame(convertGameFromApi(game, wasCompletedForUser));
         setGameMeta({
           mode: game.mode || "NORMAL",
           name: game.name,
-          wasCompleted,
+          wasCompleted: wasCompletedForUser,
         });
       } catch (err) {
         console.error("Failed to load game:", err);
@@ -167,7 +191,8 @@ export default function GamePage() {
     }
 
     loadGame();
-  }, [gameId]);
+  }, [gameId, userLoaded, currentUser]);
+
 
   return (
     <>

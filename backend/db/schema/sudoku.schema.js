@@ -26,6 +26,11 @@ const sudokuSchema = new mongoose.Schema(
       default: false,
     },
 
+    completedBy: {
+      type: [String],
+      default: [],
+    },
+
     completedCount: {
       type: Number,
       default: 0,
